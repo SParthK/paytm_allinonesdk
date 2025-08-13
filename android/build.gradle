@@ -1,16 +1,16 @@
-group = "com.paytm.allinonesdk"
+group = "com.paytmpayments.allinonesdk"
 version = "1.0.0"
 
 buildscript {
-    ext.kotlin_version = '1.8.22' // Updated for better AGP compatibility
+    ext.kotlin_version = "1.7.10"
     repositories {
         google()
         mavenCentral()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.4.2' // Compatible with compileSdk 35
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath("com.android.tools.build:gradle:7.3.0")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
     }
 }
 
@@ -25,8 +25,11 @@ apply plugin: "com.android.library"
 apply plugin: "kotlin-android"
 
 android {
-    namespace "com.paytm.allinonesdk" // Required for AGP 7.0
-    compileSdk = 35
+    if (project.android.hasProperty("namespace")) {
+        namespace = "com.paytmpayments.allinonesdk"
+    }
+
+    compileSdk = 34
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -57,9 +60,9 @@ android {
             useJUnitPlatform()
 
             testLogging {
-                events "passed", "skipped", "failed", "standardOut", "standardError"
-                outputs.upToDateWhen {false}
-                showStandardStreams = true
+               events "passed", "skipped", "failed", "standardOut", "standardError"
+               outputs.upToDateWhen {false}
+               showStandardStreams = true
             }
         }
     }

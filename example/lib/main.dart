@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:flutter/services.dart';
-import 'package:paytm_allinonesdk/paytm_allinonesdk.dart';
-import './edit_text.dart';
+import 'package:paytmpayments_allinonesdk/paytmpayments_allinonesdk.dart';
+import 'network/initiate_transaction_helper.dart';
+import 'edit_text.dart';
+import 'dart:math';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,15 +20,17 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(brightness: Brightness.dark),
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Flutter App'),
+          title: const Text('Flutter App'),
         ),
-        body: HomeScreen(),
+        body: const HomeScreen(),
       ),
     );
   }
 }
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
   @override
   State<StatefulWidget> createState() {
     return _HomeScreenState();
@@ -32,17 +38,24 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  String mid = "", orderId = "", amount = "", txnToken = "";
+  String mid = "", orderId = "", amount = "1", txnToken = "";
   String result = "";
   bool isStaging = false;
   bool isApiCallInprogress = false;
   String callbackUrl = "";
   bool restrictAppInvoke = false;
   bool enableAssist = true;
+
   @override
   void initState() {
-    print("initState");
     super.initState();
+    orderId = generateOrderId();
+  }
+
+  String generateOrderId() {
+    final randomNum =
+        Random().nextDouble() * DateTime.now().millisecondsSinceEpoch;
+    return 'PARCEL${1 + (randomNum % 2000).floor()}A${(randomNum % 100000).floor() + 10000}';
   }
 
   @override
@@ -50,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Card(
       child: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.all(8),
+          margin: const EdgeInsets.all(8),
           child: Column(
             children: <Widget>[
               EditText('Merchant ID', mid, onChange: (val) => mid = val),
@@ -60,6 +73,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   onChange: (val) => txnToken = val),
               EditText('CallBack URL', callbackUrl,
                   onChange: (val) => callbackUrl = val),
+              Container(
+                margin: const EdgeInsets.all(16),
+                child: ElevatedButton(
+                  onPressed: _generateTxnToken,
+                  child: const Text('Generate Txn Token'),
+                ),
+              ),
               Row(
                 children: <Widget>[
                   Checkbox(
@@ -70,7 +90,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           isStaging = val!;
                         });
                       }),
-                  Text("Staging")
+                  const Text("Staging")
                 ],
               ),
               Row(
@@ -83,27 +103,25 @@ class _HomeScreenState extends State<HomeScreen> {
                           restrictAppInvoke = val!;
                         });
                       }),
-                  Text("Restrict AppInvoke")
+                  const Text("Restrict AppInvoke")
                 ],
               ),
               Container(
-                margin: EdgeInsets.all(16),
+                margin: const EdgeInsets.all(16),
                 child: ElevatedButton(
                   onPressed: isApiCallInprogress
                       ? null
                       : () {
                           _startTransaction();
                         },
-                  child: Text('Start Transcation'),
+                  child: const Text('Start Transcation'),
                 ),
               ),
               Container(
                 alignment: Alignment.bottomLeft,
-                child: Text("Message : "),
+                child: const Text("Message : "),
               ),
-              Container(
-                child: Text(result),
-              ),
+              Text(result),
             ],
           ),
         ),
@@ -111,35 +129,95 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Future<void> _startTransaction() async {
-    if (txnToken.isEmpty) {
+  Future<void> _generateTxnToken() async {
+    setState(() {
+      result = '';
+      txnToken = '';
+    });
+
+    if (mid.isEmpty) {
+      setState(() {
+        result = 'MID Field is Empty';
+      });
       return;
     }
-    var sendMap = <String, dynamic>{
-      "mid": mid,
-      "orderId": orderId,
-      "amount": amount,
-      "txnToken": txnToken,
-      "callbackUrl": callbackUrl,
-      "isStaging": isStaging,
-      "restrictAppInvoke": restrictAppInvoke,
-      "enableAssist": enableAssist
-    };
-    print(sendMap);
+
+    if (orderId.isEmpty) {
+      setState(() {
+        result = 'OrderID Field is Empty';
+      });
+      return;
+    }
+
     try {
-      var response = AllInOneSdk.startTransaction(mid, orderId, amount,
-          txnToken, callbackUrl, isStaging, restrictAppInvoke, enableAssist);
+      var initTransactionResponse =
+          await InitiateTransactionHelper(mid, amount, orderId, isStaging)
+              .makeInitTransactionRequest();
+      if (initTransactionResponse.body?.txnToken != null &&
+          initTransactionResponse.body?.txnToken?.isNotEmpty == true) {
+        setState(() {
+          txnToken = initTransactionResponse.body!.txnToken!;
+        });
+        return;
+      } else {
+        setState(() {
+          result = initTransactionResponse.body?.resultInfo?.resultMsg ??
+              'Txn Api Failed';
+        });
+        return;
+      }
+    } catch (err) {
+      setState(() {
+        result = err.toString();
+      });
+      return;
+    }
+  }
+
+  Future<void> _startTransaction() async {
+    setState(() {
+      result = '';
+    });
+
+    if (txnToken.isEmpty) {
+      setState(() {
+        result = 'Txn Token Field is Empty';
+      });
+      return;
+    }
+
+    if (mid.isEmpty) {
+      setState(() {
+        result = 'MID Field is Empty';
+      });
+      return;
+    }
+
+    if (orderId.isEmpty) {
+      setState(() {
+        result = 'OrderID Field is Empty';
+      });
+      return;
+    }
+
+    try {
+      var response = PaytmPaymentsAllinonesdk().startTransaction(
+          mid,
+          orderId,
+          amount,
+          txnToken,
+          callbackUrl,
+          isStaging,
+          restrictAppInvoke,
+          enableAssist);
       response.then((value) {
-        print(value);
         setState(() {
           result = value.toString();
         });
       }).catchError((onError) {
         if (onError is PlatformException) {
           setState(() {
-            result = onError.message.toString() +
-                " \n  " +
-                onError.details.toString();
+            result = "${onError.message} \n  ${onError.details}";
           });
         } else {
           setState(() {
@@ -148,7 +226,9 @@ class _HomeScreenState extends State<HomeScreen> {
         }
       });
     } catch (err) {
-      result = err.toString();
+      setState(() {
+        result = err.toString();
+      });
     }
   }
 }
