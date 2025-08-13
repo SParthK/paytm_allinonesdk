@@ -18,9 +18,7 @@ buildscript {
 
 rootProject.allprojects {
     repositories {
-        maven {
-            url "https://artifactory.paytm.in/libs-release-local"
-        }
+        maven { url "https://artifactory.paytm.in/libs-release-local" }
         mavenLocal()
         google()
         gradlePluginPortal()
@@ -37,6 +35,16 @@ android {
 
     defaultConfig {
         minSdkVersion 16
+    }
+
+    // Ensure Java & Kotlin use the same JVM target
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 
     sourceSets {
