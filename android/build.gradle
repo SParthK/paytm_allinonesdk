@@ -1,3 +1,69 @@
+//group = "com.paytmpayments.allinonesdk"
+//version = "1.0.0"
+//
+//buildscript {
+//    ext.kotlin_version = "1.7.10"
+//    repositories {
+//        google()
+//        mavenCentral()
+//    }
+//
+//    dependencies {
+//        classpath("com.android.tools.build:gradle:7.3.0")
+//        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
+//    }
+//}
+//
+//allprojects {
+//    repositories {
+//        google()
+//        mavenCentral()
+//    }
+//}
+//
+//apply plugin: "com.android.library"
+//apply plugin: "kotlin-android"
+//
+//android {
+//    namespace = "com.paytmpayments.allinonesdk"
+//    compileSdk = 35
+//
+//    compileOptions {
+//        sourceCompatibility = JavaVersion.VERSION_1_8
+//        targetCompatibility = JavaVersion.VERSION_1_8
+//    }
+//
+//    kotlinOptions {
+//        jvmTarget = "1.8"
+//    }
+//
+//    sourceSets {
+//        main.java.srcDirs += "src/main/kotlin"
+//        test.java.srcDirs += "src/test/kotlin"
+//    }
+//
+//    defaultConfig {
+//        minSdk = 21
+//    }
+//
+//    dependencies {
+//        implementation("com.paytmpayments.appinvokesdk:appinvokesdk:1.0.2")
+//        testImplementation("org.jetbrains.kotlin:kotlin-test")
+//        testImplementation("org.mockito:mockito-core:5.0.0")
+//    }
+//
+//    testOptions {
+//        unitTests.all {
+//            useJUnitPlatform()
+//
+//            testLogging {
+//                events "passed", "skipped", "failed", "standardOut", "standardError"
+//                outputs.upToDateWhen { false }
+//                showStandardStreams = true
+//            }
+//        }
+//    }
+//}
 group = "com.paytmpayments.allinonesdk"
 version = "1.0.0"
 
@@ -25,12 +91,18 @@ apply plugin: "com.android.library"
 apply plugin: "kotlin-android"
 
 android {
-    if (project.android.hasProperty("namespace")) {
-        namespace = "com.paytmpayments.allinonesdk"
+    // Required for AGP 7.3+ to replace the old package attribute in AndroidManifest.xml
+    namespace = "com.paytmpayments.allinonesdk"
+
+    // Android SDK versions
+    compileSdk = 35
+
+    defaultConfig {
+        minSdk = 21
+        targetSdk = 35
     }
 
-    compileSdk = 34
-
+    // Java & Kotlin compatibility
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -40,30 +112,29 @@ android {
         jvmTarget = "1.8"
     }
 
+    // Source sets
     sourceSets {
         main.java.srcDirs += "src/main/kotlin"
         test.java.srcDirs += "src/test/kotlin"
     }
 
-    defaultConfig {
-        minSdk = 21
-    }
-
-    dependencies {
-        implementation("com.paytmpayments.appinvokesdk:appinvokesdk:1.0.2")
-        testImplementation("org.jetbrains.kotlin:kotlin-test")
-        testImplementation("org.mockito:mockito-core:5.0.0")
-    }
-
+    // Test configuration
     testOptions {
         unitTests.all {
             useJUnitPlatform()
 
             testLogging {
-               events "passed", "skipped", "failed", "standardOut", "standardError"
-               outputs.upToDateWhen {false}
-               showStandardStreams = true
+                events "passed", "skipped", "failed", "standardOut", "standardError"
+                outputs.upToDateWhen { false }
+                showStandardStreams = true
             }
         }
     }
+}
+
+// Dependencies must be outside the android {} block
+dependencies {
+    implementation("com.paytmpayments.appinvokesdk:appinvokesdk:1.0.2")
+    testImplementation("org.jetbrains.kotlin:kotlin-test")
+    testImplementation("org.mockito:mockito-core:5.0.0")
 }
