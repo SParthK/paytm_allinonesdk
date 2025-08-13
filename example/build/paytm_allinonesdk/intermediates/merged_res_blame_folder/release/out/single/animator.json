@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "C:\\Users\\User\\Downloads\\paytm_allinonesdk-1.2.6\\example\\build\\paytm_allinonesdk\\intermediates\\merged_res\\release\\animator\\fragment_close_enter.xml",
+        "source": "C:\\Users\\User\\.gradle\\caches\\transforms-3\\184d0e5ed7a62c3ca49eb3dc37a7ab52\\transformed\\fragment-1.7.1\\res\\animator\\fragment_close_enter.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\Downloads\\paytm_allinonesdk-1.2.6\\example\\build\\paytm_allinonesdk\\intermediates\\merged_res\\release\\animator\\fragment_fade_enter.xml",
+        "source": "C:\\Users\\User\\.gradle\\caches\\transforms-3\\184d0e5ed7a62c3ca49eb3dc37a7ab52\\transformed\\fragment-1.7.1\\res\\animator\\fragment_fade_enter.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\Downloads\\paytm_allinonesdk-1.2.6\\example\\build\\paytm_allinonesdk\\intermediates\\merged_res\\release\\animator\\fragment_close_exit.xml",
+        "source": "C:\\Users\\User\\.gradle\\caches\\transforms-3\\184d0e5ed7a62c3ca49eb3dc37a7ab52\\transformed\\fragment-1.7.1\\res\\animator\\fragment_close_exit.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\Downloads\\paytm_allinonesdk-1.2.6\\example\\build\\paytm_allinonesdk\\intermediates\\merged_res\\release\\animator\\fragment_fade_exit.xml",
+        "source": "C:\\Users\\User\\.gradle\\caches\\transforms-3\\184d0e5ed7a62c3ca49eb3dc37a7ab52\\transformed\\fragment-1.7.1\\res\\animator\\fragment_fade_exit.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\Downloads\\paytm_allinonesdk-1.2.6\\example\\build\\paytm_allinonesdk\\intermediates\\merged_res\\release\\animator\\fragment_open_enter.xml",
+        "source": "C:\\Users\\User\\.gradle\\caches\\transforms-3\\184d0e5ed7a62c3ca49eb3dc37a7ab52\\transformed\\fragment-1.7.1\\res\\animator\\fragment_open_enter.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\Downloads\\paytm_allinonesdk-1.2.6\\example\\build\\paytm_allinonesdk\\intermediates\\merged_res\\release\\animator\\fragment_open_exit.xml",
+        "source": "C:\\Users\\User\\.gradle\\caches\\transforms-3\\184d0e5ed7a62c3ca49eb3dc37a7ab52\\transformed\\fragment-1.7.1\\res\\animator\\fragment_open_exit.xml"
+    }
+]

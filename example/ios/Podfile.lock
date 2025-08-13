@@ -1,28 +1,22 @@
 PODS:
   - Flutter (1.0.0)
-  - integration_test (0.0.1):
-    - Flutter
-  - paytmpayments_allinonesdk (1.0.2):
+  - paytm_allinonesdk (1.2.3):
     - Flutter
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
-  - integration_test (from `.symlinks/plugins/integration_test/ios`)
-  - paytmpayments_allinonesdk (from `.symlinks/plugins/paytmpayments_allinonesdk/ios`)
+  - paytm_allinonesdk (from `.symlinks/plugins/paytm_allinonesdk/ios`)
 
 EXTERNAL SOURCES:
   Flutter:
     :path: Flutter
-  integration_test:
-    :path: ".symlinks/plugins/integration_test/ios"
-  paytmpayments_allinonesdk:
-    :path: ".symlinks/plugins/paytmpayments_allinonesdk/ios"
+  paytm_allinonesdk:
+    :path: ".symlinks/plugins/paytm_allinonesdk/ios"
 
 SPEC CHECKSUMS:
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
-  integration_test: 4a889634ef21a45d28d50d622cf412dc6d9f586e
-  paytmpayments_allinonesdk: 7cc7d562aabc2bba90c19b6bedc172d822643f70
+  paytm_allinonesdk: a1b94aca5388e70c6d8679b858d69932cda53698
 
-PODFILE CHECKSUM: 819463e6a0290f5a72f145ba7cde16e8b6ef0796
+PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
 
-COCOAPODS: 1.16.2
+COCOAPODS: 1.14.3

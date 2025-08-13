@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "C:\\Users\\User\\Downloads\\paytm_allinonesdk-1.2.6\\example\\build\\paytm_allinonesdk\\intermediates\\merged_res\\release\\drawable-ldpi-v4\\ic_call_answer_video_low.png",
+        "source": "C:\\Users\\User\\.gradle\\caches\\transforms-3\\0f22d198d9a022c67653b6ab4a77fd64\\transformed\\core-1.13.1\\res\\drawable-ldpi-v4\\ic_call_answer_video_low.png"
+    },
+    {
+        "merged": "C:\\Users\\User\\Downloads\\paytm_allinonesdk-1.2.6\\example\\build\\paytm_allinonesdk\\intermediates\\merged_res\\release\\drawable-ldpi-v4\\ic_call_decline.png",
+        "source": "C:\\Users\\User\\.gradle\\caches\\transforms-3\\0f22d198d9a022c67653b6ab4a77fd64\\transformed\\core-1.13.1\\res\\drawable-ldpi-v4\\ic_call_decline.png"
+    },
+    {
+        "merged": "C:\\Users\\User\\Downloads\\paytm_allinonesdk-1.2.6\\example\\build\\paytm_allinonesdk\\intermediates\\merged_res\\release\\drawable-ldpi-v4\\ic_call_answer.png",
+        "source": "C:\\Users\\User\\.gradle\\caches\\transforms-3\\0f22d198d9a022c67653b6ab4a77fd64\\transformed\\core-1.13.1\\res\\drawable-ldpi-v4\\ic_call_answer.png"
+    },
+    {
+        "merged": "C:\\Users\\User\\Downloads\\paytm_allinonesdk-1.2.6\\example\\build\\paytm_allinonesdk\\intermediates\\merged_res\\release\\drawable-ldpi-v4\\ic_call_decline_low.png",
+        "source": "C:\\Users\\User\\.gradle\\caches\\transforms-3\\0f22d198d9a022c67653b6ab4a77fd64\\transformed\\core-1.13.1\\res\\drawable-ldpi-v4\\ic_call_decline_low.png"
+    },
+    {
+        "merged": "C:\\Users\\User\\Downloads\\paytm_allinonesdk-1.2.6\\example\\build\\paytm_allinonesdk\\intermediates\\merged_res\\release\\drawable-ldpi-v4\\ic_call_answer_low.png",
+        "source": "C:\\Users\\User\\.gradle\\caches\\transforms-3\\0f22d198d9a022c67653b6ab4a77fd64\\transformed\\core-1.13.1\\res\\drawable-ldpi-v4\\ic_call_answer_low.png"
+    },
+    {
+        "merged": "C:\\Users\\User\\Downloads\\paytm_allinonesdk-1.2.6\\example\\build\\paytm_allinonesdk\\intermediates\\merged_res\\release\\drawable-ldpi-v4\\ic_call_answer_video.png",
+        "source": "C:\\Users\\User\\.gradle\\caches\\transforms-3\\0f22d198d9a022c67653b6ab4a77fd64\\transformed\\core-1.13.1\\res\\drawable-ldpi-v4\\ic_call_answer_video.png"
+    }
+]

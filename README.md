@@ -1,4 +1,4 @@
-# paytmpayments_allinonesdk
+# paytm_allinonesdk
 
 ## Use this package as a library
 
@@ -8,7 +8,7 @@
 Add this to your package's pubspec.yaml file:
 
 dependencies:
-  paytmpayments_allinonesdk: ^1.0.0
+  paytm_allinonesdk: ^1.2.6
 ```
 
 2. Install it
@@ -27,15 +27,15 @@ Alternatively, your editor might support flutter pub get. Check the docs for you
 ```
 Now in your Dart code, you can use:
 
-import 'package:paytmpayments_allinonesdk/paytmpayments_allinonesdk.dart';
+import 'package:paytm_allinonesdk/paytm_allinonesdk.dart';
 ```
 
 4. Call transaction method
 
 ```
     try {
-      var response = PaytmpaymentsAllinonesdk.startTransaction(
-          mid, orderId, amount, txnToken, callbackUrl, isStaging, restrictAppInvoke);
+      var response = AllInOneSdk.startTransaction(
+          mid, orderId, amount, txnToken, "", isStaging, restrictAppInvoke);
       response.then((value) {
         print(value);
         setState(() {

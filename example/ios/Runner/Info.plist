@@ -6,8 +6,6 @@
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
-	<key>CFBundleDisplayName</key>
-	<string>Paytmpayments Allinonesdk</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -15,7 +13,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>paytmpayments_allinonesdk_example</string>
+	<string>allinonesdk_example</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -29,8 +27,9 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>paytmuniqueid</string>
-				<string>paytmPcftes32568781908276</string>
+				<string>paytmAliHyb88382719614331</string>
+				<string>paytmMIDTST82860936770496</string>
+				<string>paytmAliSub58582630351896</string>
 			</array>
 		</dict>
 	</array>
@@ -39,12 +38,9 @@
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>paytm</string>
-		<string>bhim</string>
 		<string>paytmmp</string>
-		<string>upi</string>
 		<string>phonepe</string>
 		<string>tez</string>
-		<string>cred</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
@@ -67,5 +63,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 </dict>
 </plist>
