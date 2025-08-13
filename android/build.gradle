@@ -1,12 +1,10 @@
-// Remove group/version if not publishing to Maven
-// group 'com.paytm.allinonesdk'
-// version '1.0-SNAPSHOT'
+group = "com.paytm.allinonesdk"
+version = "1.0.0"
 
 buildscript {
     ext.kotlin_version = '1.8.22' // Updated for better AGP compatibility
     repositories {
         google()
-        gradlePluginPortal()
         mavenCentral()
     }
 
@@ -16,31 +14,23 @@ buildscript {
     }
 }
 
-rootProject.allprojects {
+allprojects {
     repositories {
-        maven { url "https://artifactory.paytm.in/libs-release-local" }
-        mavenLocal()
         google()
-        gradlePluginPortal()
         mavenCentral()
     }
 }
 
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
+apply plugin: "com.android.library"
+apply plugin: "kotlin-android"
 
 android {
-    namespace "com.paytm.allinonesdk" // Required for AGP 7.0+
-    compileSdkVersion 35
+    namespace "com.paytm.allinonesdk" // Required for AGP 7.0
+    compileSdk = 35
 
-    defaultConfig {
-        minSdkVersion 16
-    }
-
-    // Ensure Java & Kotlin use the same JVM target
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 
     kotlinOptions {
@@ -48,15 +38,29 @@ android {
     }
 
     sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'
+        main.java.srcDirs += "src/main/kotlin"
+        test.java.srcDirs += "src/test/kotlin"
     }
 
-    lintOptions {
-        disable 'InvalidPackage'
+    defaultConfig {
+        minSdk = 21
     }
-}
 
-dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'com.paytm.appinvokesdk:appinvokesdk:1.7.1'
+    dependencies {
+        implementation("com.paytmpayments.appinvokesdk:appinvokesdk:1.0.2")
+        testImplementation("org.jetbrains.kotlin:kotlin-test")
+        testImplementation("org.mockito:mockito-core:5.0.0")
+    }
+
+    testOptions {
+        unitTests.all {
+            useJUnitPlatform()
+
+            testLogging {
+                events "passed", "skipped", "failed", "standardOut", "standardError"
+                outputs.upToDateWhen {false}
+                showStandardStreams = true
+            }
+        }
+    }
 }
